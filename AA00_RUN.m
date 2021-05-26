@@ -45,29 +45,27 @@ distRatioThreshold = input('\nEnter desired distance ratio. (0.5 - 0.95): ');
 imgRange    =   2 ;                                                         % as we always use this to compute multiple images multiple times
 qImageStart =   input('\nEnter start image : ');
 endRange    =   input('\nEnter Range (10,20,50 etc...): ');
-%distRatio_mat   =   [0.9 0.8 0.75];
-distLimit_mat   =   [10.5];%12.5 15 25 50];
+distLimit_mat   =   [10.5];  % This variable is not important as it is set automatically depending of the selected dataset. (for kitti : 5 meters and St. Lucia 10.5 meters)
 
 parfor i = 1:5
     RESULT_ALL_test  = {};
     count_RESULT_ALL = 0;
     %Selects which cornor detectors to use to compute KEY FRAMES
-    %BRISK, FAST, HARRIS, MIN EIGEN /Shi-Tomasi
+    %BRISK, FAST, HARRIS, MIN EIGEN /Shi-Tomasi, ORB
     detectFeatures_KF_methodType = i;
    
     for j = 7:7
         %Selects which feature Detector to use to MATCH IMAGES
-        %ORB, BRISK, SURF, MIN EIGEN / Shi-Tomasi 
+        %ORB, BRISK, SURF, MIN EIGEN / Shi-Tomasi, MSER, HARRIS, FAST, KAZE
         featureDetector_methodType = j;
         
         for k = 1:6
             %Selects which feature extractor to use to MATCH IMAGES
-            %ORB, BRISK, SURF
+            %ORB, BRISK, SURF, FREAK, MSER, KAZE
             featureDescriptor_methodType = k;
         
             for l = 1:numel(distLimit_mat)
                 count_RESULT_ALL    = count_RESULT_ALL + 1;
-    %           distRatioThreshold  = distRatio_mat(l);    % Passing  
                 distLimit           = distLimit_mat(l);     %
 
                 % Calling function AA00_main_script_func 
