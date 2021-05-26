@@ -148,7 +148,7 @@ matchedPointsI  = imagePointsI(indexPairs_QI(:,2),:);
 
 rng('shuffle');
 % Find INLIERS KF and Querry Image
-[fMAT, inliers]     = estimateFundamentalMatrix(matchedPointsI,matchedPointsQ,'Method','MSAC','NumTrials',2000,'DistanceThreshold',0.1,'Confidence',99);
+[fMAT, inliers]     = estimateFundamentalMatrix(matchedPointsI,matchedPointsQ,'Method','RANSAC','NumTrials',2000,'DistanceThreshold',0.1,'Confidence',99);
 inliers_1           = find(inliers==1);
 noOfInliers         = numel(inliers_1);
 %disp(noOfInliers);

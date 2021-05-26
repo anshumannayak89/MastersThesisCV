@@ -141,11 +141,11 @@ parfor i = 1:5
             end
         end
     end
-    save_func_how_original(RESULT_ALL_test,i);
+    save_results_func(RESULT_ALL_test,i);
 end
 toc
 
-function save_func_how_original(RESULT_ALL_test,i)
+function save_results_func(RESULT_ALL_test,i)
     eval(['save RESULT_ALL_test',int2str(i),'.mat']) 
 end
         
